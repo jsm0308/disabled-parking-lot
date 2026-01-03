@@ -1,3 +1,3 @@
 # KHUDA_CV_8th_DisabledParkingGuard
 
-ㅗㅗㅗㅗㅗㅗㅗㅗ
+다다다다다다다다다다다다닫다다다다다ㅏ다다다다다다ㅏㄷ
