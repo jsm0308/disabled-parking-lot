@@ -80,10 +80,10 @@ LSTM 기반 보행 분류 (Inference)
 - **결과**: 하차한 보행자만 사람별 이미지 시퀀스로 crop 저장
 
 관련 코드:
-- `roi_pick.py`
-- `tracker.py`
-- `id_fix.py`
-- `utils.py`
+  `roi_pick.py`
+  `tracker.py`
+  `id_fix.py`
+  `utils.py`
 
 ---
 
@@ -93,7 +93,7 @@ LSTM 기반 보행 분류 (Inference)
 - 프레임 누락 시 이전 프레임으로 보간하여 자연스러운 재생
 
 관련 코드:
-- `make_videos.py`
+`make_videos.py`
 
 ---
 
@@ -103,7 +103,7 @@ LSTM 기반 보행 분류 (Inference)
 - 출력: 프레임별 3D keypoint를 포함한 `.npz` 파일
 
 관련 코드:
-- `mediapipe_test.py`
+  `mediapipe_test.py`
 
 ---
 
@@ -123,7 +123,7 @@ MediaPipe Pose 출력과 보행 분류 모델 입력을 맞추기 위해 다음 
 출력: LSTM 입력용 CSV 파일
 
 관련 코드:
-- `media_csv_v2.py`
+  `media_csv_v2.py`
 
 ---
 
@@ -138,7 +138,7 @@ MediaPipe Pose 출력과 보행 분류 모델 입력을 맞추기 위해 다음 
 사전 학습된 모델(`best.pt`)을 이용한 **추론(inference) 단계만 포함**됩니다.
 
 관련 코드:
-- `infinf.py`
+  `infinf.py`
 
 ---
 
@@ -163,8 +163,11 @@ python MASTER_RUN.py
 MASTER_RUN.py 내부에서 다음을 제어합니다.
 
 입력 영상 경로
+
 ROI 설정
+
 보행자 선택
+
 전처리 및 inference 파라미터
 
 ---
