@@ -158,6 +158,14 @@ ROI 설정
 
 전처리 및 inference 파라미터
 
+
+https://github.com/user-attachments/assets/0450405b-7dae-48e4-98cf-d4d643f5d561
+
+https://github.com/user-attachments/assets/80d45275-3b5e-4478-a1b7-173e49411f28
+https://github.com/user-attachments/assets/f8e68d4d-c5e7-4b42-ae9c-1d63613730a1
+
+
+
 ---
 
 ## 📚 Acknowledgements
