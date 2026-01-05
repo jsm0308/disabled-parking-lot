@@ -48,6 +48,8 @@ CCTV 영상 기반 보행 특성 분석을 통한 장애인 전용 주차구역 
 
 ## 🧩 System Pipeline
 
+<img width="940" height="238" alt="image" src="https://github.com/user-attachments/assets/5e4c506e-8fc4-44cd-a8a5-24329115756b" />
+
 CCTV MP4 입력
 
 ↓
