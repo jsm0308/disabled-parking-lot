@@ -17,6 +17,7 @@ CCTV 영상 기반 보행 특성 분석을 통한 장애인 전용 주차구역 
 
 ## 🎯 주제 선정 동기
 
+<img width="1093" height="520" alt="image" src="https://github.com/user-attachments/assets/9aaeec83-c5f3-49af-bbf7-9bfcc365f4f6" />
 
 ### 장애인 전용 주차구역의 중요성
 장애인 전용 주차구역은 장애인의 이동권과 접근권 확보를 위한 필수 인프라입니다.  
@@ -48,43 +49,7 @@ CCTV 영상 기반 보행 특성 분석을 통한 장애인 전용 주차구역 
 
 ## 🧩 System Pipeline
 
-<img width="940" height="238" alt="image" src="https://github.com/user-attachments/assets/5e4c506e-8fc4-44cd-a8a5-24329115756b" />
-
-CCTV MP4 입력
-
-↓
-
-ROI 기반 차량 탐지 (YOLO)
-
-↓
-
-차량 하차 인원 감지
-
-↓
-
-Multi-object Tracking (BoT-SORT)
-
-↓
-
-하차 보행자 Crop 이미지 시퀀스 생성
-
-↓
-
-보행자별 영상 재구성
-
-↓
-
-3D Pose Estimation (MediaPipe Pose)
-
-↓
-
-Pose Sequence 전처리
-
-↓
-
-LSTM 기반 보행 분류 (Inference)
-
-
+<img width="1857" height="466" alt="image" src="https://github.com/user-attachments/assets/d7bfa0ff-9db7-48a2-becd-9aa8f06848f8" />
 
 위 파이프라인 전 과정을 하나의 실행 파일(`MASTER_RUN.py`)로 연결한 구현을 포함하였습니다.
 
@@ -128,6 +93,8 @@ LSTM 기반 보행 분류 (Inference)
 ---
 
 ### 4️⃣ Pose 데이터 전처리
+<img width="1642" height="777" alt="image" src="https://github.com/user-attachments/assets/ffe8adcc-249d-4004-b257-1b0132c4a6bc" />
+
 MediaPipe Pose 출력과 보행 분류 모델 입력을 맞추기 위해 다음 전처리를 수행합니다.
 
 - **Keypoint Selection**
@@ -152,7 +119,8 @@ MediaPipe Pose 출력과 보행 분류 모델 입력을 맞추기 위해 다음 
 - 모델: **LSTM 기반 보행 분류 모델**
 - 출력:
   - Normal Gait
-  - Pathological Gait (의심)
+  - Pathological Gait
+<img width="1725" height="831" alt="image" src="https://github.com/user-attachments/assets/82fc8020-bcb4-496e-9187-e6a130713877" />
 
 ※ 본 레포지토리에는 **학습 과정은 포함되어 있지 않으며**,  
 사전 학습된 모델(`best.pt`)을 이용한 **추론(inference) 단계만 포함**됩니다.
