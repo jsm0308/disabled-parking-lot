@@ -32,24 +32,39 @@ CCTV 영상 기반 보행 특성 분석을 통한 장애인 전용 주차구역 
 ## 🧩 System Pipeline
 
 CCTV MP4 입력
+
 ↓
+
 ROI 기반 차량 탐지 (YOLO)
+
 ↓
+
 차량 하차 인원 감지
+
 ↓
+
 Multi-object Tracking (BoT-SORT)
+
 ↓
+
 하차 보행자 Crop 이미지 시퀀스 생성
+
 ↓
+
 보행자별 영상 재구성
+
 ↓
+
 3D Pose Estimation (MediaPipe Pose)
+
 ↓
+
 Pose Sequence 전처리
+
 ↓
+
 LSTM 기반 보행 분류 (Inference)
 
----
 
 위 파이프라인 전 과정을 하나의 실행 파일(`MASTER_RUN.py`)로 연결한 구현을 포함하였습니다.
 
