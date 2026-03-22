@@ -98,18 +98,7 @@ KHUDA_CV 8th · DisabledParkingGuard
 
 ---
 
-## 5. 실행 방법
-
-```bash
-python MASTER_RUN.py
-```
-
-- 기본 입력 영상: **`inputs/cctv.mp4`** (`MASTER_RUN.py`의 `VIDEO_FILE`)
-- 산출물 루트: **`outputs/`** (botsort, person_videos, inference)
-
----
-
-## 6. 데모 영상 (Demo)
+## 5. 데모 영상 (Demo)
 
 프로젝트에 포함된 **샘플 CCTV**는 다음 경로에 있습니다.
 
@@ -121,15 +110,7 @@ python MASTER_RUN.py
 
 ---
 
-## 7. Acknowledgements
-
-- Google MediaPipe Pose  
-- Pathological Gait Dataset · Kinect v2 Skeleton Reference  
-- 보행 분석 관련 선행 연구  
-
----
-
-## 8. Team (KHUDA_CV 8th)
+## 6. Team (KHUDA_CV 8th)
 
 | Name |
 |------|
