@@ -1,21 +1,34 @@
-"""Convert inputs/cctv.mp4 to img/test_video.gif for README (GitHub-friendly size)."""
+"""MP4 -> img/CCTV.gif (README용). 기본 입력: inputs/input.mp4"""
+import argparse
 import os
 import sys
 
 import cv2
 from PIL import Image
 
-# Defaults tuned for README: small file, still readable
 MAX_WIDTH = 480
 TARGET_FPS = 8.0
-MAX_OUTPUT_FRAMES = 90  # ~11s at 8fps
+MAX_OUTPUT_FRAMES = 90
 
 
 def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "--src",
+        default=None,
+        help="입력 mp4 경로 (기본: 프로젝트 루트 기준 inputs/input.mp4)",
+    )
+    parser.add_argument(
+        "--out",
+        default=None,
+        help="출력 gif 경로 (기본: img/CCTV.gif)",
+    )
+    args = parser.parse_args()
+
     root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    src = os.path.join(root, "inputs", "cctv.mp4")
-    out_dir = os.path.join(root, "img")
-    out_gif = os.path.join(out_dir, "test_video.gif")
+    src = args.src or os.path.join(root, "inputs", "input.mp4")
+    out_gif = args.out or os.path.join(root, "img", "CCTV.gif")
+    out_dir = os.path.dirname(out_gif)
     os.makedirs(out_dir, exist_ok=True)
 
     cap = cv2.VideoCapture(src)

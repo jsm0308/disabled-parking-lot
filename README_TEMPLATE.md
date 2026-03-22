@@ -73,7 +73,7 @@
 ## 5. 실제 구현 영상
 
 <p align="center">
-  <img src="./img/{{데모_GIF파일명}}.gif" alt="" width="100%" />
+  <img src="./img/{{구현영상_GIF_파일명}}" alt="" width="100%" />
 </p>
 
 ---
@@ -92,5 +92,5 @@
 1. 이 파일을 복사해 `README.md`로 저장한다.
 2. `{{...}}` 를 전부 지우고 실제 내용으로 채운다.
 3. 제목·소제목은 **한글만** 쓰고, (영문 부제) 같은 건 넣지 않아도 된다.
-4. 구현 영상은 **GIF 한 장만** 두는 형태가 GitHub README에 잘 맞는다. (`<video>` 는 README에서 안 뜨는 경우가 많다.)
-5. 도식 PNG는 `docs/`, 데모 GIF는 `img/` 에 두는 식으로 경로만 맞춘다.
+4. 구현 영상은 **GIF 한 장만** 두는 형태가 GitHub README에 잘 맞는다. (`<video>` 는 README에서 안 뜨는 경우가 많다.) 예: `CCTV.gif`
+5. 도식 PNG는 `docs/`, 데모 GIF는 `img/` 에 두고 `{{구현영상_GIF_파일명}}` 에 `CCTV.gif` 처럼 파일명만 넣는다.
