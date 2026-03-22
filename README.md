@@ -1,6 +1,6 @@
 # CCTV 기반 장애인 전용 주차구역 보행 분석 및 부정 이용 탐지
 
-KHUDA_CV 8th · DisabledParkingGuard
+학회(KHUDA) 8기 심화 컨퍼런스 최우수상
 
 ---
 
@@ -8,55 +8,55 @@ KHUDA_CV 8th · DisabledParkingGuard
 
 본 시스템은 **CCTV 영상**에서 장애인 전용 주차구역에 주차된 차량과 하차 인물을 추적하고, **보행 특성**을 비식별적으로 분석하여 **해당 차량에 보행상 장애 이용자가 탑승했을 가능성**을 추정하는 컴퓨터 비전 기반 시스템입니다.
 
-### 배경 · 문제 인식
+### 문제 인식
 
-장애인 전용 주차구역의 부정 이용은 지속적으로 증가하지만, 기존 단속은 주로 **표지·차량 번호판 중심**으로 이루어져 **실제 보행상 장애 이용자가 탑승했는지**를 반영하기 어렵습니다. 본 프로젝트는 신원·얼굴·번호판이 아닌 **보행 패턴(행동 정보)**에 기반해 단속을 보조할 수 있는 판단 근거를 제안합니다.
+장애인 전용 주차구역의 부정 이용은 지속적으로 증가하지만, 기존 단속은 주로 **표지나 차량 번호판 중심**으로 이루어져 **실제 보행상 장애 이용자가 탑승했는지**를 반영하기 어렵습니다. 본 프로젝트는 신원이나 번호판이 아닌 **보행 패턴(행동 정보)**에 기반해 단속을 보조할 수 있는 판단 근거를 제안합니다.
 
-![문제 인식](https://github.com/user-attachments/assets/9aaeec83-c5f3-49af-bbf7-9bfcc365f4f6)
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/9aaeec83-c5f3-49af-bbf7-9bfcc365f4f6" alt="문제 인식" width="75%" />
+</p>
 
 ### 본 프로젝트의 방향
 
-- **객체 추적:** ROI 내 차량·보행자를 YOLO + BoT-SORT로 검출·추적하고, ID 안정화로 하차 인물 시퀀스를 확보합니다.
-- **보행 분석:** MediaPipe Pose로 3D 스켈레톤을 추출하고, 도메인 전처리 후 LSTM으로 Normal / Pathological Gait를 판별합니다.
+- **객체 추적:** ROI 내 차량 및 보행자를 YOLO + BoT-SORT로 추적하고, ID 안정화로 하차 인물 시퀀스를 확보합니다.
+- **보행 분석:** MediaPipe Pose로 3D 스켈레톤을 추출하고, 도메인 전처리 후 LSTM으로 Normal / Abnormal Gait를 판별합니다.
 - **비식별성:** 판단은 **관절 좌표 시퀀스** 기반이며, 개인 식별 정보를 직접 사용하지 않는 설계를 지향합니다.
 
-### 모델·시스템 요약
+### 시스템 요약
 
-**시퀀스 입력:** 단일 프레임이 아닌 **고정 길이 Pose 시퀀스**(\(T=90\))로 보행 패턴을 모델링합니다.
+**Input:** 단일 프레임이 아닌 **고정 길이 Pose 시퀀스**(T=90)로 보행 패턴을 모델링합니다.
 
-**추적·검출:** **YOLO11n** + **BoT-SORT**(`botsort.yaml`)로 MOT를 수행하고, **`IDStabilizer`**에서 IoU(0.55) · 거리(0.30) · HSV 외형(0.15) 가중합으로 `stable_id`를 보정합니다.
+**Detecting & Tracking:** **YOLO11n** + **BoT-SORT**(`botsort.yaml`)로 Multi Object Detection을 수행하고, **`IDStabilizer`**에서 IoU(0.55) · 거리(0.30) · HSV 외형(0.15) 가중합으로 `stable_id`를 보정합니다.
 
 **Pose:** **MediaPipe Pose Landmarker Heavy** (world landmarks)로 프레임별 3D 키포인트를 추출합니다.
 
-**분류기:** **양방향 LSTM(hidden=128, 2 layers)** + **LayerNorm + MLP Head**로 2-class softmax 추론합니다. 본 레포는 **`inference/best.pt`** 사전학습 가중치를 이용한 **추론 전용**입니다.
+**Classification:** **양방향 LSTM(hidden=128, 2 layers)** + **LayerNorm + MLP Head**로 2-class softmax 추론합니다.
 
 ---
 
-## 2. 기술 스택 (Tech Stack)
+## 2. 기술 스택 
 
 | 구분 | 기술 |
 |------|------|
 | **Vision & AI** | PyTorch, Ultralytics YOLO, OpenCV, MediaPipe Tasks (Pose Landmarker) |
-| **Tracking** | BoT-SORT, 커스텀 ID 안정화 (`id_fix.py`, LAP JV 매칭) |
-| **Model Architecture** | BiLSTM + FC Head (`infinf.py`) |
-| **전처리** | NumPy, Pandas, 선형 보간·뼈 길이 기반 스케일링 (`media_csv_v2.py`) |
+| **Tracking** | BoT-SORT, 커스텀 ID 안정화  |
+| **Model Architecture** | BiLSTM + FC Head  |
+| **전처리** | NumPy, Pandas, 뼈 길이 기반 스케일링  |
 
 ---
 
-## 3. 시스템 파이프라인 (System Pipeline)
+## 3. 시스템 파이프라인
 
-1. **데이터 입력 및 ROI** — 사용자가 첫 프레임에서 장애인 주차구역 다각형 ROI 지정 (`roi_pick.py`)
-2. **객체 검출·추적** — YOLO로 `person` / `car·truck·bus` 검출, BoT-SORT로 MOT, ROI 마스크로 차량 필터링 (`tracker.py`)
-3. **ID 안정화** — IoU·거리·HSV(H,S) 히스토그램으로 `raw_id` → `stable_id` 재할당 (`id_fix.py`)
-4. **하차 인물 선별** — 차량과 시공간적으로 연관된 보행자만 후속 파이프라인 대상으로 매칭
-5. **크롭·영상화** — ID별 crop을 mp4로 재구성, 구간 선택 및 누락 프레임 보간 (`make_videos.py`)
-6. **3D Pose** — 보행자 mp4에서 world landmarks 추출 → `.npz` (`mediapipe_test.py`)
-7. **전처리** — 33→11 관절 선택, SpineBase 기준 정렬, 뼈 길이 스케일링, \(T=90\) 고정·패딩 (`media_csv_v2.py`)
-8. **보행 분류** — CSV → LSTM 추론, Normal vs Pathological (`infinf.py`)
+1. **데이터 입력 및 ROI** 사용자가 첫 프레임에서 장애인 주차구역 다각형 ROI 지정 
+2. **객체 검출·추적** YOLO로 `person` / `car·truck·bus` 검출, BoT-SORT로 MOT, ROI 마스크로 차량 필터링 
+3. **ID 안정화** IoU/거리/HSV(H,S) 히스토그램으로 `raw_id` → `stable_id` 재할당 
+4. **하차 인물 선별** ROI 내 차량에서 하차한 보행자만 후속 파이프라인 대상으로 매칭
+5. **크롭 이미지 영상화** ID별 crop을 mp4로 재구성, 구간 선택 및 누락 프레임 보간
+6. **3D Pose** 보행자 mp4에서 world landmarks 추출 → `.npz` 
+7. **전처리** 33→11 관절 선택, SpineBase 기준 정렬, 뼈 길이 스케일링, \(T=90\) 고정·패딩 
+8. **보행 분류** CSV → LSTM 추론, Normal vs Abnormal
 
 ### End-to-End 흐름
-
-프로젝트 파이프라인을 Figma로 정리한 **CCTV 기준 End-to-End** 다이어그램입니다.
 
 <p align="center">
   <img src="./docs/cctv_end_to_end.png" alt="End-to-End pipeline (Figma)" width="75%" />
@@ -64,18 +64,18 @@ KHUDA_CV 8th · DisabledParkingGuard
 
 ---
 
-## 4. 주요 엔지니어링 포인트 (Engineering Points)
+## 4. 주요 엔지니어링 포인트 
 
 ### 4.1. 시계열 보행 패턴 반영
 
 - **문제:** 단일 프레임만으로는 보행 이상을 안정적으로 구분하기 어렵습니다.
 - **해결:** MediaPipe 시퀀스를 **고정 길이 90프레임**으로 맞춘 뒤 BiLSTM으로 시간축 패턴을 모델링합니다.
-- **구현:** `TARGET_T = 90`, 부족 시 zero-padding, 초과 시 crop (`media_csv_v2.py`).
+- **구현:** `TARGET_T = 90`, 부족 시 zero-padding, 초과 시 crop 
 
 ### 4.2. 도메인 특화 Pose 전처리
 
 - **Translation 제거:** 양 Hip 중점을 **SpineBase**로 두고 모든 관절을 상대 좌표로 이동.
-- **Scale normalization:** 다리 뼈 4개(Hip–Knee, Knee–Ankle 좌·우) 길이의 대표값으로 전체 좌표를 나누어 키·카메라 거리 변동을 완화.
+- **Scale normalization:** 다리 뼈 4개(Hip–Knee, Knee–Ankle 좌우) 길이의 대표값으로 전체 좌표를 나누어 키, 카메라 거리 변동 등을 완화.
 - **품질 필터:** 뼈 길이가 `[0.05, 1.20]` 밖이거나 극단값인 프레임은 마스킹 후 **선형 보간**으로 복원.
 
 ### 4.3. ID Switch 완화
@@ -83,23 +83,22 @@ KHUDA_CV 8th · DisabledParkingGuard
 - BoT-SORT `raw_id`에 대해 **최소 IoU·최대 중심거리(정규화)**로 후보를 거르고, 가중 점수로 Hungarian 매칭 후 비용 임계값으로 매칭을 제한합니다.
 - 외형은 **HSV 2채널(H,S) 히스토그램 상관**으로 유사도를 계산해 조도 변화에 상대적으로 강하게 설계했습니다.
 
-### 4.4. 추론 안정성 (PyTorch)
-
-- 체크포인트 로드 후 **`model.eval()`**, 추론 구간 **`with torch.no_grad():`**로 그래프 누적을 방지합니다 (`infinf.py`).
-
-※ 본 레포에는 **학습 스크립트는 포함되지 않으며**, `MASTER_RUN.py`로 **추론 파이프라인**만 재현할 수 있습니다.
 
 ---
 
 ## 5. 데모 영상 (Demo)
 
-프로젝트에 포함된 **샘플 CCTV**는 다음 경로에 있습니다.
+프로젝트에 포함된 **샘플 CCTV**입니다. `MASTER_RUN.py` 기본 입력으로 사용하며, 아래는 **`inputs/cctv.mp4`** 미리보기입니다. (GitHub 웹에서 재생됩니다.)
+
+<p align="center">
+  <video src="https://github.com/jsm0308/disabled-parking-lot/raw/main/inputs/cctv.mp4" controls width="75%">
+    브라우저에서 video 태그를 지원하지 않습니다. <a href="https://github.com/jsm0308/disabled-parking-lot/blob/main/inputs/cctv.mp4">파일 링크</a>로 재생하세요.
+  </video>
+</p>
 
 | 항목 | 경로 |
 |------|------|
-| 데모 입력 | [`inputs/cctv.mp4`](inputs/cctv.mp4) |
-
-실행 시 ROI를 지정한 뒤, 위 영상을 기준으로 추적·보행 분류 파이프라인이 동작합니다. (첫 실행 시 MediaPipe `pose_landmarker_heavy.task`가 자동 다운로드될 수 있습니다.)
+| 데모 입력 (로컬·레포) | [`inputs/cctv.mp4`](inputs/cctv.mp4) |
 
 ---
 
