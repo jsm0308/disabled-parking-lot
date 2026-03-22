@@ -62,13 +62,6 @@ KHUDA_CV 8th · DisabledParkingGuard
   <img src="./docs/cctv_end_to_end.png" alt="End-to-End pipeline (Figma)" width="75%" />
 </p>
 
-
-### 참고 도식 (기존 슬라이드 이미지)
-
-<p align="center">
-  <img src="https://github.com/user-attachments/assets/d7bfa0ff-9db7-48a2-becd-9aa8f06848f8" alt="DisabledParkingGuard System Pipeline" width="90%" />
-</p>
-
 ---
 
 ## 4. 주요 엔지니어링 포인트 (Engineering Points)
