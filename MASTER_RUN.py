@@ -21,7 +21,7 @@ VIDEO_OUT_DIR = os.path.join(BASE_OUT_DIR, "person_videos")
 INFERENCE_OUT_DIR = os.path.join(BASE_OUT_DIR, "inference")
 
 def main():
-    # 1. ROI 설정 및 객체 추적
+    # 1-1 ROI 설정 및 객체 추적
     print("\n" + "="*60)
     print(">>> 1. ROI 설정 및 객체 추적 시작")
     print("="*60)
@@ -34,7 +34,7 @@ def main():
     
     print(">>> YOLO AI 모델 로딩 및 분석 시작...")
     
-    # 트래킹 실행
+    # 1-2 트래킹 실행
     run_track_and_save(
         video_path=VIDEO_FILE,      
         out_dir=BOTSORT_DIR,  
