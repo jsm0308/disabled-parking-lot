@@ -54,68 +54,14 @@ KHUDA_CV 8th · DisabledParkingGuard
 7. **전처리** — 33→11 관절 선택, SpineBase 기준 정렬, 뼈 길이 스케일링, \(T=90\) 고정·패딩 (`media_csv_v2.py`)
 8. **보행 분류** — CSV → LSTM 추론, Normal vs Pathological (`infinf.py`)
 
-### End-to-End 흐름 (Figma 도식)
+### End-to-End 흐름
 
 프로젝트 파이프라인을 Figma로 정리한 **CCTV 기준 End-to-End** 다이어그램입니다.
 
 <p align="center">
-  <img src="./docs/cctv_end_to_end.png" alt="End-to-End pipeline (Figma)" width="95%" />
+  <img src="./docs/cctv_end_to_end.png" alt="End-to-End pipeline (Figma)" width="75%" />
 </p>
 
-### End-to-End 흐름 (Mermaid)
-
-> GitHub에서 `README` 미리보기 시 아래 블록이 다이어그램으로 렌더링됩니다.
-
-```mermaid
-flowchart TB
-  subgraph IN["입력"]
-    V[("inputs/cctv.mp4\n데모 CCTV")]
-  end
-
-  subgraph A["1. ROI & 추적"]
-    R["roi_pick.py\nROI 다각형 좌표"]
-    Y["tracker.py\nYOLO11n + BoT-SORT\nbotsort.yaml"]
-    I["id_fix.py\nIDStabilizer\nstable_id"]
-  end
-
-  subgraph ART1["산출물: outputs/botsort/"]
-    VIS["visualized.mp4"]
-    CSV1["bboxes.csv"]
-    CROP["person/id_XXXX/*.jpg\ncar|truck|bus/..."]
-  end
-
-  subgraph B["2. 보행 클립"]
-    M["make_videos.py"]
-    PV[("outputs/person_videos/\nid_XXXX.mp4")]
-  end
-
-  subgraph C["3. Pose & 전처리"]
-    MP["mediapipe_test.py\nPose Landmarker Heavy"]
-    NPZ[("outputs/inference/\nfile_id.npz")]
-    PRE["media_csv_v2.py\n11관절·정규화·T=90"]
-    CSV2[("outputs/inference/\nfile_id.csv")]
-  end
-
-  subgraph D["4. 추론"]
-    PT["inference/best.pt\n사전학습 BiLSTM"]
-    OUT["콘솔: Normal / ABNORMAL\n+ 확률 요약"]
-  end
-
-  V --> R
-  R --> Y
-  Y --> I
-  I --> VIS
-  I --> CSV1
-  I --> CROP
-  CROP --> M
-  M --> PV
-  PV --> MP
-  MP --> NPZ
-  NPZ --> PRE
-  PRE --> CSV2
-  CSV2 --> PT
-  PT --> OUT
-```
 
 ### 참고 도식 (기존 슬라이드 이미지)
 
