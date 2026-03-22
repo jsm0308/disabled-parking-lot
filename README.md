@@ -4,7 +4,7 @@
 
 ---
 
-## 1. 개요 (Summary)
+## 1. 개요
 
 본 시스템은 **CCTV 영상**에서 장애인 전용 주차구역에 주차된 차량과 하차 인물을 추적하고, **보행 특성**을 비식별적으로 분석하여 **해당 차량에 보행상 장애 이용자가 탑승했을 가능성**을 추정하는 컴퓨터 비전 기반 시스템입니다.
 
@@ -86,32 +86,17 @@
 
 ---
 
-## 5. 실제 구현 영상 (Demo)
-
-프로토타입 동작을 녹화한 **`inputs/cctv.mp4`** 를 GIF로 변환한 미리보기입니다. (`MASTER_RUN.py` 기본 입력으로 동일한 mp4를 사용합니다.)
-
-GitHub `README`는 **`<img>`로 넣은 GIF/PNG**는 잘 보여 주지만, **`<video>` 태그는 보안상 제거**되는 경우가 많아 README 본문에는 **GIF**로 표시하는 편이 안정적입니다. 원본 화질·전체 길이는 아래 mp4 링크를 사용하세요.
+## 5. 실제 구현 영상
 
 <p align="center">
-  <img src="./img/test_video.gif" alt="실제 구현 영상" width="100%" />
+  <img src="./img/test_video.gif" alt="" width="100%" />
 </p>
-
-| 항목 | 경로 |
-|------|------|
-| 데모 입력 (원본) | [`inputs/cctv.mp4`](inputs/cctv.mp4) |
-| README GIF | [`img/test_video.gif`](img/test_video.gif) |
-
-<p align="center">
-  <sub>원본: <a href="https://github.com/jsm0308/disabled-parking-lot/blob/main/inputs/cctv.mp4">GitHub에서 mp4 열기</a> · <a href="https://raw.githubusercontent.com/jsm0308/disabled-parking-lot/main/inputs/cctv.mp4">raw 스트리밍</a></sub>
-</p>
-
-GIF 재생성: `python tools/mp4_to_gif.py`
 
 ---
 
-## 6. Team (KHUDA_CV 8th)
+## 6. 팀
 
-| Name |
+| 이름 |
 |------|
 | 이승준 |
 | 표지훈 |

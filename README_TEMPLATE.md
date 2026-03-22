@@ -1,134 +1,96 @@
-# {{PROJECT_TITLE}}
+# {{프로젝트_제목}}
 
-{{BADGE_OR_TAGLINE}}
-
----
-
-## 1. 개요 (Summary)
-
-{{SUMMARY_PARAGRAPH}}
-
-### 배경 · 문제 인식
-
-{{PROBLEM_CONTEXT}}
-
-![문제 인식]({{PROBLEM_IMAGE_URL_OR_PATH}})
-
-### 본 프로젝트의 방향
-
-- {{DIRECTION_BULLET_1}}
-- {{DIRECTION_BULLET_2}}
-- {{DIRECTION_BULLET_3}}
-
-### 모델·시스템 요약
-
-{{MODEL_SYSTEM_BULLETS_OR_SHORT_PARAGRAPH}}
+{{수상_또는_한줄_설명}}
 
 ---
 
-## 2. 기술 스택 (Tech Stack)
+## 1. 개요
+
+{{개요_본문}}
+
+### 문제 인식
+
+{{문제_인식_본문}}
+
+<p align="center">
+  <img src="{{문제인식_이미지_경로}}" alt="" width="75%" />
+</p>
+
+### 방향
+
+- {{방향_1}}
+- {{방향_2}}
+- {{방향_3}}
+
+### 요약
+
+{{모델_및_입출력_요약_짧게}}
+
+---
+
+## 2. 기술 스택
 
 | 구분 | 기술 |
 |------|------|
-| **Vision & AI** | {{STACK_VISION}} |
-| **Backend / Infra** | {{STACK_BACKEND}} |
-| **Model** | {{STACK_MODEL}} |
-| **기타** | {{STACK_OTHER}} |
+| {{구분1}} | {{기술1}} |
+| {{구분2}} | {{기술2}} |
+| {{구분3}} | {{기술3}} |
 
 ---
 
-## 3. 시스템 파이프라인 (System Pipeline)
+## 3. 시스템 파이프라인
 
-1. {{PIPELINE_STEP_1}}
-2. {{PIPELINE_STEP_2}}
-3. {{PIPELINE_STEP_3}}
-4. {{PIPELINE_STEP_4}}
-5. {{PIPELINE_STEP_5}}
+1. {{단계1}}
+2. {{단계2}}
+3. {{단계3}}
+4. {{단계4}}
+5. {{단계5}}
 
-### End-to-End 흐름 (Figma / 도식 이미지)
-
-> Figma 등에서 내보낸 PNG/SVG를 `docs/`에 저장하고, 아래 파일명만 맞춥니다.
+### End-to-End 흐름
 
 <p align="center">
-  <img src="./docs/{{END_TO_END_DIAGRAM_FILENAME}}" alt="End-to-End pipeline" width="95%" />
-</p>
-
-### End-to-End 흐름 (Mermaid)
-
-> GitHub `README` 미리보기에서 자동 렌더링됩니다.
-
-```mermaid
-flowchart TB
-  A[{{NODE_A}}] --> B[{{NODE_B}}]
-  B --> C[{{NODE_C}}]
-```
-
-### 참고 도식 (선택)
-
-<p align="center">
-  <img src="{{OPTIONAL_REFERENCE_IMAGE_URL}}" alt="Reference diagram" width="90%" />
+  <img src="./docs/{{도식_파일명}}.png" alt="" width="50%" />
 </p>
 
 ---
 
-## 4. 주요 엔지니어링 포인트 (Engineering Points)
+## 4. 엔지니어링 포인트
 
-### 4.1. {{ENG_POINT_1_TITLE}}
+### 4.1. {{소제목1}}
 
-- **문제:** {{ENG_POINT_1_PROBLEM}}
-- **해결:** {{ENG_POINT_1_SOLUTION}}
-- **구현:** {{ENG_POINT_1_CODE_OR_FILE}}
+- {{내용}}
 
-### 4.2. {{ENG_POINT_2_TITLE}}
+### 4.2. {{소제목2}}
 
-- **문제:** {{ENG_POINT_2_PROBLEM}}
-- **해결:** {{ENG_POINT_2_SOLUTION}}
+- {{내용}}
 
-### 4.3. {{ENG_POINT_3_TITLE}}
+### 4.3. {{소제목3}}
 
-{{ENG_POINT_3_BODY}}
+- {{내용}}
 
 ---
 
-## 5. 실행 방법
+## 5. 실제 구현 영상
 
-```bash
-{{RUN_COMMAND}}
-```
-
-- 기본 설정: {{RUN_NOTES}}
+<p align="center">
+  <img src="./img/{{데모_GIF파일명}}.gif" alt="" width="100%" />
+</p>
 
 ---
 
-## 6. 데모 (Demo)
+## 6. 팀
 
-| 항목 | 경로 |
-|------|------|
-| 데모 입력 / 샘플 | [`{{DEMO_ASSET_PATH}}`]({{DEMO_ASSET_PATH}}) |
-
-{{DEMO_EXTRA_NOTES}}
-
----
-
-## 7. Acknowledgements
-
-- {{ACK_1}}
-- {{ACK_2}}
-
----
-
-## 8. Team
-
-| Name |
+| 이름 |
 |------|
-| {{MEMBER_1}} |
-| {{MEMBER_2}} |
+| {{이름1}} |
+| {{이름2}} |
 
 ---
 
-## 템플릿 사용 방법
+## 사용법
 
-1. 새 프로젝트에 이 파일을 복사한 뒤 `README.md`로 이름을 바꾸거나, 내용만 붙여넣습니다.
-2. `{{...}}` 플레이스홀더를 모두 실제 문구로 치환합니다.
-3. Figma·도구에서 내보낸 이미지를 `docs/{{END_TO_END_DIAGRAM_FILENAME}}` 경로에 둡니다.
-4. Mermaid 블록의 노드·연결을 프로젝트 구조에 맞게 수정합니다.
+1. 이 파일을 복사해 `README.md`로 저장한다.
+2. `{{...}}` 를 전부 지우고 실제 내용으로 채운다.
+3. 제목·소제목은 **한글만** 쓰고, (영문 부제) 같은 건 넣지 않아도 된다.
+4. 구현 영상은 **GIF 한 장만** 두는 형태가 GitHub README에 잘 맞는다. (`<video>` 는 README에서 안 뜨는 경우가 많다.)
+5. 도식 PNG는 `docs/`, 데모 GIF는 `img/` 에 두는 식으로 경로만 맞춘다.
