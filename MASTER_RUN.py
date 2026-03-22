@@ -10,7 +10,7 @@ import mediapipe_test as medpip
 import media_csv_v2 as medcsv
 import infinf as inf
 
-VIDEO_FILE = "inputs/normal_test1.mp4"
+VIDEO_FILE = "inputs/cctv.mp4"
 YOLO_MODEL = "yolo11n.pt"
 TRACKER_YAML = "botsort.yaml"
 LSTM_CKPT = Path("inference/best.pt")
