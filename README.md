@@ -1,4 +1,4 @@
-# CCTV 기반 장애인 전용 주차구역 보행 분석 및 부정 이용 탐지 (Prototype)
+# CCTV 기반 장애인 전용 주차구역 보행 분석 및 부정 이용 탐지
 
 KHUDA_CV 8th · DisabledParkingGuard
 
