@@ -59,7 +59,7 @@
 ### End-to-End 흐름
 
 <p align="center">
-  <img src="./docs/cctv_end_to_end.png" alt="End-to-End pipeline (Figma)" width="75%" />
+  <img src="./docs/cctv_end_to_end.png" alt="End-to-End pipeline (Figma)" width="50%" />
 </p>
 
 ---
