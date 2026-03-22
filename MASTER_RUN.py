@@ -10,8 +10,7 @@ import mediapipe_test as medpip
 import media_csv_v2 as medcsv
 import infinf as inf
 
-# 분석할 CCTV mp4 경로 (inputs 폴더에 파일을 두고 이름을 맞춤)
-VIDEO_FILE = "inputs/input.mp4"
+VIDEO_FILE = "inputs/cctv.mp4"
 YOLO_MODEL = "yolo11n.pt"
 TRACKER_YAML = "botsort.yaml"
 LSTM_CKPT = Path("inference/best.pt")
