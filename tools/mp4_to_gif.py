@@ -1,4 +1,4 @@
-"""MP4 -> img/CCTV.gif (README용). 기본 입력: inputs/cctv.mp4"""
+"""MP4 -> inputs/CCTV.gif (README용). 기본 입력: inputs/cctv.mp4"""
 import argparse
 import os
 import sys
@@ -21,13 +21,13 @@ def main():
     parser.add_argument(
         "--out",
         default=None,
-        help="출력 gif 경로 (기본: img/CCTV.gif)",
+        help="출력 gif 경로 (기본: inputs/CCTV.gif)",
     )
     args = parser.parse_args()
 
     root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     src = args.src or os.path.join(root, "inputs", "cctv.mp4")
-    out_gif = args.out or os.path.join(root, "img", "CCTV.gif")
+    out_gif = args.out or os.path.join(root, "inputs", "CCTV.gif")
     out_dir = os.path.dirname(out_gif)
     os.makedirs(out_dir, exist_ok=True)
 

@@ -89,7 +89,7 @@
 ## 5. 실제 구현 영상
 
 <p align="center">
-  <img src="./img/CCTV.gif" alt="" width="100%" />
+  <img src="./inputs/CCTV.gif" alt="" width="100%" />
 </p>
 
 ---
